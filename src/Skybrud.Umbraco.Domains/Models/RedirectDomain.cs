@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using Newtonsoft.Json;
 using Skybrud.Essentials.Enums;
+using Skybrud.Essentials.Json.Converters.Enums;
 using Skybrud.Essentials.Strings;
 using Umbraco.Core.Persistence;
 using Umbraco.Core.Persistence.DatabaseAnnotations;
@@ -32,7 +33,9 @@ namespace Skybrud.Umbraco.Domains.Models {
         [Column("UniqueId")]
         public Guid UniqueId { get; internal set; }
 
+        [Ignore]
         [JsonProperty("inboundProtocol")]
+        [JsonConverter(typeof(EnumCamelCaseConverter))]
         public RedirectProtocol InboundProtocol { get; set; }
 
         [JsonIgnore]
@@ -50,7 +53,9 @@ namespace Skybrud.Umbraco.Domains.Models {
         [Column("InboundPort")]
         public int InboundPort { get; set; }
 
+        [Ignore]
         [JsonProperty("outboundProtocol")]
+        [JsonConverter(typeof(EnumCamelCaseConverter))]
         public RedirectProtocol OutboundProtocol { get; set; }
 
         [JsonIgnore]
@@ -68,10 +73,12 @@ namespace Skybrud.Umbraco.Domains.Models {
         [Column("OutboundPort")]
         public int OutboundPort { get; set; }
 
+        [NullSetting(NullSetting = NullSettings.Null)]
         [JsonProperty("outboundPath")]
         [Column("OutboundPath")]
         public string OutboundPath { get; set; }
 
+        [Ignore]
         [JsonProperty("statusCode")]
         public HttpStatusCode StatusCode { get; set; }
 

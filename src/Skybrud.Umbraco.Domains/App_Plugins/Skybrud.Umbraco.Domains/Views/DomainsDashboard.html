@@ -1,0 +1,62 @@
+﻿<div ng-controller="Skybrud.Umbraco.DomainsDashboard.Controller">
+    
+    <h1>Hejsa</h1>
+
+    <pre>{{allDomains}}</pre>
+    
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Oprindeligt domæne</th>
+            <th>Destination</th>
+            <th>Oprettet</th>
+            <th>Opdateret</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+
+        <tbody></tbody>
+        <tr ng-repeat="d in allDomains">
+            <td>{{d.id}}</td>
+            <td>{{d.inboundProtocol}}: {{d.inboundDomain}}</td>
+            <td>{{d.outboundProtocol}}: {{d.outboundDomain}}</td>
+            <td>{{d.created | date:'yyyy-MM-dd HH:mm'}}</td>
+            <td>{{d.updated | date:'yyyy-MM-dd HH:mm'}}</td>
+            <td><a class="umb-era-button umb-button--s">Rediger</a></td>
+            <td><a class="umb-era-button umb-button--s" ng-click="deleteDomain(d.id)">Slet</a></td>
+        </tr>
+    </table>
+    
+
+    <hr />
+    <!--<h1><localize key="assignDomain_addNew"></localize></h1>-->
+    <h1>Opret ny</h1>
+    <table class="table">
+        <tr>
+            <td>Fra:</td>
+
+            <td>
+                <select>
+                    <option ng-repeat="p in protocolTypes" value="{{p}}">{{p}}</option>
+                </select>
+            </td>
+            <td>
+                <input type="text" placeholder="fra"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Til:</td>
+            <td>
+                <select>
+                    <option ng-repeat="p in protocolTypes" value="{{p}}">{{p}}</option>
+                </select>
+            </td>
+            <td>
+                <input type="text" placeholder="til"/>
+            </td>
+        </tr>
+    </table>
+
+</div>
